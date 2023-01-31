@@ -52,7 +52,7 @@ public class NoteServiceImpl implements NoteService {
         Optional<User> userOptional = userRepository.findById(userId);
         if(userOptional.isPresent()) {
             List<Note> noteList = noteRepository.findAllByUserEquals(userOptional.get());
-            return noteList.stream().map(note -> new NoteDto(note)).collect(Collectors.toList());
+            return noteList.stream().map(NoteDto::new).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
